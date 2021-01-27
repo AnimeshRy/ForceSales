@@ -6,6 +6,13 @@
     <title>Test Page</title>
 </head>
 <body>
+    <ul>
+        {% for lead in leads %}
+        <li>
+            <a href="/leads/{{ lead.pk }}/">
+            {{ lead.first_name }} {{ lead.age }}</a></li>
+            {% endfor %}
+        </ul>
     <h2>Test Yoho</h2>
 </body>
 </html>
