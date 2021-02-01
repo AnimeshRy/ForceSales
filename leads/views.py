@@ -1,3 +1,4 @@
+from django.core.mail import send_mail
 from django import contrib
 from django.db.models import query
 from django.http import request
@@ -52,14 +53,15 @@ class LeadCreateView(CreateView):
     def get_success_url(self):
         return reverse("leads:lead_list")
 
-
-class LeadUpdateView(UpdateView):
-    template_name = "leads/lead_update.html"
-    form_class = LeadModelForm
-    queryset = Lead.objects.all()
-
-    def get_success_url(self):
-        return reverse("leads:lead_list")
+    def form_valid(self, form):
+        # TODO send email
+        send_mail(
+            subject="A lead has been created",
+            message="Go to the site to see the new lead",
+            from_email="test@test.com",
+            recipient_list=["test2@test.com"]
+        )
+        return super(LeadCreateView, self).form_valid(form)
 
 
 def lead_create(request):
@@ -73,6 +75,15 @@ def lead_create(request):
         "form": form
     }
     return render(request, "leads/lead_create.html", context)
+
+
+class LeadUpdateView(UpdateView):
+    template_name = "leads/lead_update.html"
+    form_class = LeadModelForm
+    queryset = Lead.objects.all()
+
+    def get_success_url(self):
+        return reverse("leads:lead_list")
 
 
 def lead_update(request, pk):
