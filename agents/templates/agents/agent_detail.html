@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
 
-<section class="text-gray-700 body-font overflow-hidden">
+<section class="text-gray-600 body-font overflow-hidden">
     <div class="container px-5 py-24 mx-auto">
       <div class="lg:w-4/5 mx-auto flex flex-wrap">
         <div class="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
-          <h2 class="text-sm title-font text-gray-500 tracking-widest">LEAD</h2>
-          <h1 class="text-gray-900 text-3xl title-font font-medium mb-4">{{ lead.first_name}} {{ lead.last_name }}</h1>
+          <h2 class="text-sm title-font text-gray-500 tracking-widest">Agent</h2>
+          <h1 class="text-gray-900 text-3xl title-font font-medium mb-4">{{ agent.user.username }}</h1>
           <div class="flex mb-4">
-            <a href="{% url 'leads:lead_detail' lead.pk %}" class="flex-grow text-yellow-500 border-b-2 border-yellow-500 py-2 text-lg px-1">Overview</a>
+            <a href="{% url 'agents:agent_detail' agent.pk %}" class="flex-grow text-yellow-500 border-b-2 border-yellow-500 py-2 text-lg px-1">Overview</a>
             <a class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">Reviews</a>
-            <a href="{% url 'leads:lead_update' lead.id %}" class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">Update</a>
+            <a href="{% url 'agents:agent_update' agent.id %}" class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">Update</a>
           </div>
           <p class="leading-relaxed mb-4">Fam locavore kickstarter distillery. Mixtape chillwave tumeric sriracha taximy chia microdosing tilde DIY. XOXO fam inxigo juiceramps cornhole raw denim forage brooklyn. Everyday carry +1 seitan poutine tumeric. Gastropub blue bottle austin listicle pour-over, neutra jean.</p>
           <div class="flex border-t border-gray-200 py-2">
