@@ -9,8 +9,10 @@ from .forms import AgentModelForm
 class AgentListView(LoginRequiredMixin, ListView):
     template_name = "agents/agent_list.html"
 
+    # only return agents with the request.user organization
     def get_queryset(self):
-        return Agent.objects.all()
+        request_user_organization = self.request.user.userprofile
+        return Agent.objects.filter(organization=request_user_organization)
 
 
 class AgentCreateView(LoginRequiredMixin, CreateView):
@@ -32,7 +34,8 @@ class AgentDetailView(LoginRequiredMixin, DetailView):
     context_object_name = "agent"
 
     def get_queryset(self):
-        return Agent.objects.all()
+        request_user_organization = self.request.user.userprofile
+        return Agent.objects.filter(organization=request_user_organization)
 
 
 class AgentUpdateView(LoginRequiredMixin, UpdateView):
@@ -40,7 +43,8 @@ class AgentUpdateView(LoginRequiredMixin, UpdateView):
     form_class = AgentModelForm
 
     def get_queryset(self):
-        return Agent.objects.all()
+        request_user_organization = self.request.user.userprofile
+        return Agent.objects.filter(organization=request_user_organization)
 
     def get_success_url(self):
         return reverse("agents:agent_list")
@@ -51,7 +55,8 @@ class AgentDeleteView(LoginRequiredMixin, DeleteView):
     context_object_name = "agent"
 
     def get_queryset(self):
-        return Agent.objects.all()
+        request_user_organization = self.request.user.userprofile
+        return Agent.objects.filter(organization=request_user_organization)
 
     def get_success_url(self) -> str:
         return reverse("agents:agent_list")
