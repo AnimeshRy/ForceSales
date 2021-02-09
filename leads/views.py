@@ -34,14 +34,31 @@ class LeadListView(LoginRequiredMixin, ListView):
 
         # initial queryset of leads for the entire organization
         if user.is_organizer:
-            queryset = Lead.objects.filter(organization=user.userprofile)
+            queryset = Lead.objects.filter(
+                organization=user.userprofile, agent__isnull=False)
         else:
             queryset = Lead.objects.filter(
-                organization=user.agent.organization)
+                organization=user.agent.organization, agent__isnull=False)
 
             # filter for the agent that is logged in
             queryset = queryset.filter(agent__user=user)
         return queryset
+
+    def get_context_data(self, **kwargs):
+        user = self.request.user
+        context = super(LeadListView, self).get_context_data(**kwargs)
+
+        # filter leads if user is an organizer
+        # check for agent being null in a lead syn "foreignkey__property=val"
+        if user.is_organizer:
+            queryset = Lead.objects.filter(
+                organization=user.userprofile,
+                agent__isnull=True)
+            context.update({
+                "unassigned_leads": queryset
+            })
+
+        return context
 
 
 def lead_list(request):
