@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm, UsernameField
 
 # User = get_user_model()
 
+
 class LeadModelForm(forms.ModelForm):
     class Meta:
         model = Lead

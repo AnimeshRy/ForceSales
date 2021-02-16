@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views import generic
 from django.views.generic.edit import FormView
-from .models import Agent, Lead
+from .models import Agent, Category, Lead
 from .forms import AssignAgentForm, LeadForm, LeadModelForm, CustomUserCreationForm
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -105,7 +105,9 @@ class LeadCreateView(OrganizerAndLoginRequiredMixin, CreateView):
         return reverse("leads:lead_list")
 
     def form_valid(self, form):
-        # todo send email
+        lead = form.save(commit=False)
+        lead.organization = self.request.user.userprofile
+        lead.save()
         send_mail(
             subject="A lead has been created",
             message="Go to the site to see the new lead",
@@ -195,6 +197,39 @@ class AssignAgentView(OrganizerAndLoginRequiredMixin, FormView):
         lead.agent = agent
         lead.save()
         return super(AssignAgentView, self).form_valid(form)
+
+
+class CategoryListView(LoginRequiredMixin, ListView):
+    template_name = "leads/category_list.html"
+    context_object_name = "category_list"
+
+    def get_context_data(self, **kwargs):
+        context = super(CategoryListView, self).get_context_data(**kwargs)
+        user = self.request.user
+
+        if user.is_organizer:
+            queryset = Lead.objects.filter(
+                organization=user.userprofile)
+        else:
+            queryset = Lead.objects.filter(
+                organization=user.agent.organization)
+
+        context.update({
+            "unassigned_lead_count": queryset.filter(category__isnull=True).count()
+        })
+        return context
+
+    def get_queryset(self):
+        user = self.request.user
+
+        # initial queryset of leads for the entire organization
+        if user.is_organizer:
+            queryset = Category.objects.filter(
+                organization=user.userprofile)
+        else:
+            queryset = Category.objects.filter(
+                organization=user.agent.organization)
+        return queryset
 
 # def create_lead(request):
 #     form = LeadModelForm()

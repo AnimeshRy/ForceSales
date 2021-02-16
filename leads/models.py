@@ -24,6 +24,8 @@ class Lead(models.Model):
     # put null to all leads when agent is deleted
     agent = models.ForeignKey(
         "Agent", null=True, blank=True, on_delete=models.SET_NULL)
+    category = models.ForeignKey(
+        "Category", null=True, blank=True, on_delete=models.SET_NULL)
 
     def __str__(self) -> str:
         return f"{self.first_name} {self.last_name}"
@@ -35,6 +37,15 @@ class Agent(models.Model):
 
     def __str__(self) -> str:
         return self.user.email
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=30)
+    organization = models.ForeignKey(
+        UserProfile, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return self.name
 
 # signals
 
