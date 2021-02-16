@@ -9,8 +9,8 @@
           <h1 class="text-gray-900 text-3xl title-font font-medium mb-4">{{ lead.first_name}} {{ lead.last_name }}</h1>
           <div class="flex mb-4">
             <a class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1" href="{% url 'leads:lead_detail' lead.id %}">Overview</a>
-            <a href="{% url 'leads:lead_category_update' lead.pk %}" class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">Category</a>
-            <a href="{% url 'leads:lead_update' lead.id %}" class="flex-grow text-yellow-500 border-b-2 border-yellow-500 py-2 text-lg px-1">Update</a>
+            <a href="{% url 'leads:lead_detail' lead.pk %}" class="flex-grow text-yellow-500 border-b-2 border-yellow-500 py-2 text-lg px-1">Category</a>
+            <a href="{% url 'leads:lead_update' lead.id %}" class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">Update</a>
           </div>
           <form method="post">
               {% csrf_token %}

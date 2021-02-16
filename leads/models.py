@@ -25,7 +25,7 @@ class Lead(models.Model):
     agent = models.ForeignKey(
         "Agent", null=True, blank=True, on_delete=models.SET_NULL)
     category = models.ForeignKey(
-        "Category", null=True, blank=True, on_delete=models.SET_NULL)
+        "Category", null=True, blank=True, on_delete=models.SET_NULL, related_name="leads")
 
     def __str__(self) -> str:
         return f"{self.first_name} {self.last_name}"
