@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "c086d0f231d4ccaef19358df60a18ba96c05f2db4f4569ff1d5bd40ece7a4deb"
+            "sha256": "a93dce79eb36a276f6b71680a0729e542a1f1428504881e62d54319126f68804"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -23,6 +23,14 @@
             ],
             "index": "pypi",
             "version": "==3.3.1"
+        },
+        "crispy-tailwind": {
+            "hashes": [
+                "sha256:91446670d1a6fde850eb07b2be7c9ee3073ce56ce251d9812ea51dceca4203a3",
+                "sha256:c92c9a18cb1fb246fc4dd1deb883ad3a0d3b14bb3f591826093bc20204501258"
+            ],
+            "index": "pypi",
+            "version": "==0.3.0"
         },
         "django": {
             "hashes": [

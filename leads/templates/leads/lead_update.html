@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load tailwind_filters %}
 {% block content %}
 
 <section class="text-gray-600 body-font overflow-hidden">
@@ -14,10 +15,12 @@
           </div>
           <form method="post">
               {% csrf_token %}
-              {{ form.as_p }}
-              <button type="submit">Submit</button>
+              {{ form|crispy }}
+              <button class="w-full bg-yellow-500 hover:bg-yellow-600 px-3 py-2 rounded-md text-white rounded" type="submit">Submit</button>
           </form>
-          <a href="{% url 'leads:lead_delete' lead.id %}" class="w-1/2 mt-3 flex ml-auto text-white bg-yellow-500 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-600 rounded">Delete Lead</a>
+          <div class="mt-5 py-5 border-t border-gray-200">
+            <a href="{% url 'leads:lead_delete' lead.id %}" class="w-1/3 mt-1 ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Delete Lead</a>
+          </div>
         </div>
         <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="https://dummyimage.com/400x400">
       </div>
