@@ -10,9 +10,24 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from agents.mixins import OrganizerAndLoginRequiredMixin
 
 
+def login_excluded(redirect_to):
+    """ This decorator kicks authenticated users out of a view """
+    def _method_wrapper(view_method):
+        def _arguments_wrapper(self, request, *args, **kwargs):
+            if self.request.user.is_authenticated:
+                return redirect(redirect_to)
+            return view_method(request, *args, **kwargs)
+        return _arguments_wrapper
+    return _method_wrapper
+
+
 class SignupView(CreateView):
     template_name = "registration/signup.html"
     form_class = CustomUserCreationForm
+
+    @login_excluded("leads:lead_list")
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
 
     def get_success_url(self) -> str:
         return reverse("login")
@@ -22,8 +37,8 @@ class LandingPageView(TemplateView):
     template_name = "landing.html"
 
 
-def landing_page(request):
-    return render(request, "landing.html")
+class AboutPageView(TemplateView):
+    template_name = "about.html"
 
 
 class LeadListView(LoginRequiredMixin, ListView):
@@ -180,6 +195,13 @@ def lead_delete(request, pk):
 class AssignAgentView(OrganizerAndLoginRequiredMixin, FormView):
     template_name = "leads/assign_agent.html"
     form_class = AssignAgentForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({
+            "lead": Lead.objects.get(id=self.kwargs["pk"])
+        })
+        return context
 
     def get_form_kwargs(self, **kwargs):
         kwargs = super(AssignAgentView, self).get_form_kwargs(**kwargs)

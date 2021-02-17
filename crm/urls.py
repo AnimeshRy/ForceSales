@@ -1,4 +1,4 @@
-from leads.views import landing_page, LandingPageView, SignupView
+from leads.views import AboutPageView, LandingPageView, SignupView
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
@@ -9,13 +9,14 @@ from django.contrib.auth.views import (
     PasswordResetView,
     PasswordResetDoneView,
     PasswordResetConfirmView,
-    PasswordResetCompleteView
+    PasswordResetCompleteView,
 )
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', LandingPageView.as_view(), name='landing-page'),
+    path('about/', AboutPageView.as_view(), name='about'),
     path('leads/', include('leads.urls', namespace="leads")),
     path('agents/', include('agents.urls', namespace="agents")),
 
@@ -30,7 +31,7 @@ urlpatterns = [
 
     # sign up routes
     path('signup/', SignupView.as_view(), name='signup'),
-    path('login/', LoginView.as_view(), name='login'),
+    path('login/', LoginView.as_view(redirect_authenticated_user=True), name='login'),
     path('logout/', LogoutView.as_view(), name='logout')
 ]
 
