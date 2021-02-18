@@ -21,7 +21,7 @@
             {% for lead in category.leads.all %}
             <tr>
                 <td class="px-4 py-3">
-                    <a class="hover:text-blue-400" href="{% url 'leads:lead_detail' lead.pk %}">{{ lead.first_name }}</a></td>
+                    <a class="text-yellow-500 hover:text-yellow-800" href="{% url 'leads:lead_detail' lead.pk %}">{{ lead.first_name }}</a></td>
                 <td class="px-4 py-3">{{ lead.last_name }}</td>
             </tr>
             {% endfor %}

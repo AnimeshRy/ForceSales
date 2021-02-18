@@ -23,7 +23,7 @@ class Lead(models.Model):
     organization = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     # put null to all leads when agent is deleted
     agent = models.ForeignKey(
-        "Agent", null=True, blank=True, on_delete=models.SET_NULL)
+        "Agent", null=True, blank=True, on_delete=models.SET_NULL, related_name="agent_leads")
     category = models.ForeignKey(
         "Category", null=True, blank=True, on_delete=models.SET_NULL, related_name="leads")
     description = models.TextField()
