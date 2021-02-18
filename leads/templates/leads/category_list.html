@@ -4,9 +4,10 @@
 
 <section class="text-gray-600 body-font">
     <div class="container px-5 py-24 mx-auto">
-      <div class="flex flex-col text-center w-full mb-20">
+      <div class="flex flex-col text-center w-full mb-10">
         <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">Categories</h1>
-        <p class="lg:w-2/3 mx-auto leading-relaxed text-base">These categories segment the leads</p>
+        <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Categories segmenting the leads</p>
+        <a class="mt-2 text-2xl text-black-900 hover:text-yellow-500" href="{% url 'leads:category_create' %}">Create a new Category</a>
       </div>
       <div class="lg:w-2/3 w-full mx-auto overflow-auto">
         <table class="table-auto w-full text-left whitespace-no-wrap">
@@ -23,7 +24,7 @@
             </tr>
             {% for category in category_list %}
             <tr>
-                <td class="px-4 py-3 "><a href="{% url 'leads:category_detail' category.pk %}">{{ category.name }}</a></td>
+                <td class="px-4 py-3 text-yellow-500 hover:text-yellow-800"><a href="{% url 'leads:category_detail' category.pk %}">{{ category.name }}</a></td>
                 <td class="px-4 py-3">{{ category.leads.count }}</td>
             </tr>
             {% endfor %}

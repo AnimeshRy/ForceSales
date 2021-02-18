@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load tailwind_filters %}
+
+{% block content %}
+
+<div class="max-w-lg mx-auto">
+        <h1 class="text-4xl text-gray-800">Update '{{ object.name }}'</h1>
+    <form method="post" class="mt-5">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type='submit' class="w-full text-white bg-yellow-500 hover:bg-yellow-600 px-3 py-2 rounded-md">
+            Submit
+        </button>
+    </form>
+
+    <div class="mt-5 py-5 border-t border-gray-200">
+        <a href="{% url 'leads:category_list' %}" class="hover:text-yellow-500 mt-3">Go Back To categories</a>
+    </div>
+</div>
+
+{% endblock content %}
