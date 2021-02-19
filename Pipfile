@@ -12,6 +12,7 @@ python-dotenv = "==0.15.0"
 six = "==1.14.0"
 sqlparse = "==0.4.1"
 crispy-tailwind = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 autopep8 = "*"

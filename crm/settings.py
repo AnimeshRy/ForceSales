@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 import dotenv
-dotenv.load_dotenv()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,11 +23,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = str(os.getenv('SECRET_KEY'))
-# print(SECRET_KEY)
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+READ_DOT_ENV_FILE = bool(os.getenv('READ_DOT_ENV_FILE', default=False))
+
+if READ_DOT_ENV_FILE:
+    dotenv.load_dotenv()
+
+SECRET_KEY = str(os.getenv('SECRET_KEY'))
+
+DEBUG = bool(os.getenv('DEBUG', default=False))
 
 ALLOWED_HOSTS = []
 
@@ -90,8 +93,12 @@ WSGI_APPLICATION = 'crm.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.getenv("DB_NAME"),
+        'USER': os.getenv("DB_USER"),
+        'PASSWORD': os.getenv("DB_PASSWORD"),
+        'HOST': os.getenv("DB_HOST"),
+        'PORT': os.getenv("DB_PORT"),
     }
 }
 
