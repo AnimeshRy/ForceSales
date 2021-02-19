@@ -13,9 +13,12 @@ six = "==1.14.0"
 sqlparse = "==0.4.1"
 crispy-tailwind = "*"
 psycopg2-binary = "*"
+whitenoise = "*"
+waitress = "*"
 
 [dev-packages]
 autopep8 = "*"
+
 
 [requires]
 python_version = "3.8"
