@@ -1,1 +1,1 @@
-web: waitress-serve --port=8000 crm.wsgi:application 
+web: waitress-serve --port=$PORT crm.wsgi:application 
