@@ -5,7 +5,10 @@ from leads.models import User, Agent
 
 class AgentModelForm(forms.ModelForm):
     class Meta:
-        model = Agent
+        model = User
         fields = (
-            'user',
+            'email',
+            'username',
+            'first_name',
+            'last_name'
         )
