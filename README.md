@@ -1,4 +1,13 @@
-# ForceSales 
+<h1 align="center">ForceSales</h1>
+<div align="center">
+
+  [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://forcethosesales.herokuapp.com/)
+  [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/AnimeshRy/ForceSales/graphs/commit-activity)
+  [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/AnimeshRy/ForceSales/blob/master/LICENSE)
+</div>
+
+
+
 CRM Build with Django 3 and PostgreSQL 
 
 ForceSales is a [Customer relationship management](https://www.zoho.com/crm/what-is-crm.html) software and is not a copy of any existing out there.
@@ -61,10 +70,4 @@ python manage.py runserver
 You can deploy this app yourself to Heroku to play with.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-
-
-
-
-
-
 
