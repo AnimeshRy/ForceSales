@@ -35,7 +35,7 @@ ForceSales Uses Django 3 as the backend which manages everything - routes, auth,
 
 ## Frontend 
 
-ForceSales uses [Tailwind](https://tailwindcss.com/docs/) as the major frontend framework. The project uses cdn's instead of static npm package.
+ForceSales uses [Tailwind](https://tailwindcss.com/docs/) as the CSS frontend framework. The project uses cdn's instead of static npm package.
 
 The project also utilizes these [tailwind blocks](https://tailblocks.cc/) as prepared frontend blocks.
 
