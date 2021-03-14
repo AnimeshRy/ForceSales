@@ -2,7 +2,6 @@
 <div align="center">
 
   [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://forcethosesales.herokuapp.com/)
-  [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/AnimeshRy/ForceSales/graphs/commit-activity)
   [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/AnimeshRy/ForceSales/blob/master/LICENSE)
 </div>
 
